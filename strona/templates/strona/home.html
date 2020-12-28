@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MoviesAddict</title>
+</head>
+<body>
+    <h1>Strona Domowa </h1>
+    {% for zap in zapytanie %}
+    <p> <a href = "danyFilm/{{zap.id}}">{{zap.title}} </a></p>
+    {% endfor %}
+</body>
+</html>
