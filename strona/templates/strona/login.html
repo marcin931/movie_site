@@ -1,0 +1,13 @@
+
+{% load static %}
+
+{% block content %}
+    <h1>Log In</h1>
+    <form action="{% url 'strona:login' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Logowanie</button>
+        </div>
+    </form>
+{% endblock content %}

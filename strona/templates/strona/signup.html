@@ -1,0 +1,18 @@
+
+{% load static %}
+
+{% block content %}
+    <h1>Sign Up</h1>
+    <form action="/strona/signup/" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Sign Up</button>
+        </div>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Already Have An Account? <a class="ml-2" href="{% url 'strona:login' %}" method="post" type= "submit">Log In</a>
+        </small>
+    </div>
+    </form>
+{% endblock content %}

@@ -1,13 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>MoviesAddict</title>
+    <link rel="stylesheet" href="{% static '/assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/css/Bold-BS4-CSS-Image-Slider.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/css/Dark-NavBar.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/css/Navbar-with-menu-and-login.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/css/Navigation-Menu.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/css/Navigation-with-Button.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/css/styles.css' %}">
 </head>
-<body>
-    <h1>Strona Domowa </h1>
-    {% for zap in zapytanie %}
+<body style="background-image: url('static/assets/img/kinoplenka-popkorn-fon.jpg');">
+ <div>
+        <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" style="height: 80px;background-color: rgba(50,81,99,0);color: #ffffff;">
+            <div class="container-fluid"><a class="navbar-brand" href="{%  url 'strona:strona-home' %}"><i class="fa fa-globe"></i>&nbsp;MoviesAddict</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div
+                    class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-item nav-link" style="color:#ffffff;" href="{%url 'strona:login' %}">Logowanie</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-item nav-link" style="color:#ffffff;" href="{%url 'strona:signup' %}"><i class="fa fa-sign-in"></i>&nbsp;Rejestracja</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-item nav-link" style="color:#ffffff;" href="#">Koszyk</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+ </div>
+
+    <div class="accordian">
+
+        <ul>
+            {% for zap in zapytanie %}
+            <li><a class="image_title" href="danyFilm/{{zap.id}}">{{zap.title}}</a><a href="#"><img src=""></a></li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+
+    <!--{% for zap in zapytanie %}
     <p> <a href = "danyFilm/{{zap.id}}">{{zap.title}} </a></p>
-    {% endfor %}
+    {% endfor %} -->
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
 </body>
 </html>
