@@ -1,9 +1,9 @@
 from django.db import models
 
 # Create your models here.
-class Filmy(models.Model):
+class movie(models.Model):
     title = models.CharField(max_length = 100)
-    image = models.ImageField(null = True, blank = True)
+    image = models.ImageField(null = True, blank = True, upload_to = "images/")
     description = models.TextField(blank = True)
     rate = models.CharField(max_length = 100)
     ticketPrice = models.DecimalField(max_digits = 12, decimal_places = 2)
@@ -13,5 +13,6 @@ class Filmy(models.Model):
 
 
     class Meta:
-        verbose_name = "Film"
-        verbose_name_plural = "Filmy"
+        verbose_name = "movie"
+        verbose_name_plural = "movies"
+

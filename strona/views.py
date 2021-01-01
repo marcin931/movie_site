@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Filmy
+from .models import movie
 from django.http import HttpResponse
 from .forms import SignUpForm, LoginForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -8,13 +8,15 @@ from django.contrib.auth import login, logout
 
 # Create your views here.
 def home_view(request):
-    zapytanie = Filmy.objects.all()
+    zapytanie = movie.objects.all()
     dane = {'zapytanie': zapytanie}
     return render(request, 'strona/home.html', dane)
 
 def danyFilm(request, id):
-    danyFilm_user = Filmy.objects.get(pk = id)
-    return HttpResponse(danyFilm_user.title)
+    danyFilm_user = movie.objects.get(pk = id)
+    return HttpResponse(danyFilm_user.description)
+
+
 
 def signup_view(request):
     if request.method == 'POST':

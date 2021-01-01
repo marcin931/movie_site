@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Filmy
+from .models import movie
 # Register your models here.
 
-admin.site.register(Filmy)
+admin.site.register(movie)

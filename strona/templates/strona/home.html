@@ -35,14 +35,14 @@
 
         <ul>
             {% for zap in zapytanie %}
-            <li><a class="image_title" href="danyFilm/{{zap.id}}">{{zap.title}}</a><a href="#"><img src=""></a></li>
+            <li><a class="image_title" href={{zap.description}}></a><a href="danyFilm/{{zap.id}}">{{zap.title}}<img src={{zap.image.url}}></a></li>
             {% endfor %}
         </ul>
 
     </div>
 
 
-    <!--{% for zap in zapytanie %}
+    <!-- {% for zap in zapytanie %}
     <p> <a href = "danyFilm/{{zap.id}}">{{zap.title}} </a></p>
     {% endfor %} -->
     <script src="{% static 'assets/js/jquery.min.js' %}"></script>
