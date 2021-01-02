@@ -7,6 +7,7 @@ class movie(models.Model):
     description = models.TextField(blank = True)
     rate = models.CharField(max_length = 100)
     ticketPrice = models.DecimalField(max_digits = 12, decimal_places = 2)
+    ticketAvailability = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title

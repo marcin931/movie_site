@@ -4,9 +4,21 @@ from django.http import HttpResponse
 from .forms import SignUpForm, LoginForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
-
+from rest_framework import generics
+from .serializers import movieSerializer
 
 # Create your views here.
+
+class movieList(generics.ListCreateAPIView):
+    queryset = movie.objects.all()
+    serializer_class = movieSerializer
+
+class movieDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = movie.objects.all()
+    serializer_class = movieSerializer
+
+
+
 def home_view(request):
     zapytanie = movie.objects.all()
     dane = {'zapytanie': zapytanie}
@@ -15,8 +27,6 @@ def home_view(request):
 def danyFilm(request, id):
     danyFilm_user = movie.objects.get(pk = id)
     return HttpResponse(danyFilm_user.description)
-
-
 
 def signup_view(request):
     if request.method == 'POST':
@@ -28,7 +38,6 @@ def signup_view(request):
     else:
             form = SignUpForm()
     return render(request, 'strona/signup.html', {'form': form})
-
 
 def login_view(request):
     if request.method == 'POST':
