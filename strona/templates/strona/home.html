@@ -8,43 +8,72 @@
     <title>MoviesAddict</title>
     <link rel="stylesheet" href="{% static '/assets/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static '/assets/fonts/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static '/assets/css/Bold-BS4-CSS-Image-Slider.css' %}">
     <link rel="stylesheet" href="{% static '/assets/css/Dark-NavBar.css' %}">
     <link rel="stylesheet" href="{% static '/assets/css/Navbar-with-menu-and-login.css' %}">
     <link rel="stylesheet" href="{% static '/assets/css/Navigation-Menu.css' %}">
     <link rel="stylesheet" href="{% static '/assets/css/Navigation-with-Button.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/css/Animated-Pretty-Product-List.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/css/Bootstrap-4---Product-List.css' %}">
     <link rel="stylesheet" href="{% static '/assets/css/styles.css' %}">
 </head>
+
+
+
+{% block content %}
 <body style="background-image: url('static/assets/img/kinoplenka-popkorn-fon.jpg');">
- <div>
-        <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" style="height: 80px;background-color: rgba(50,81,99,0);color: #ffffff;">
-            <div class="container-fluid"><a class="navbar-brand" href="{%  url 'strona:strona-home' %}"><i class="fa fa-globe"></i>&nbsp;MoviesAddict</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                <div
-                    class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item" role="presentation"><a class="nav-item nav-link" style="color:#ffffff;" href="{%url 'strona:login' %}">Logowanie</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-item nav-link" style="color:#ffffff;" href="{%url 'strona:signup' %}"><i class="fa fa-sign-in"></i>&nbsp;Rejestracja</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-item nav-link" style="color:#ffffff;" href="#">Koszyk</a></li>
-                    </ul>
-                </div>
+<nav class="mb-3">
+    {% if user.is_authenticated %}
+        <form action="{% url 'strona:logout' %}" method="post">
+            {% csrf_token %}
+            <button class="btn btn-primary btn-sm" type="submit">Log Out</button>
+        </form>
+    {% endif %}
+</nav>
+<div>
+    <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button"
+         style="height: 80px;background-color: rgba(50,81,99,0);color: #ffffff;">
+        <div class="container-fluid"><a class="navbar-brand" href="{%  url 'strona:strona-home' %}"><i class="fa fa-globe"></i>&nbsp;MoviesAddict</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-item nav-link" style="color:#ffffff;" href="{%url 'strona:login' %}">Logowanie</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-item nav-link" style="color:#ffffff;" href="{%url 'strona:signup' %}"><i class="fa fa-sign-in"></i>&nbsp;Rejestracja</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-item nav-link" style="color:#ffffff;" href="#">Koszyk</a></li>
+                </ul>
             </div>
-        </nav>
- </div>
+        </div>
+    </nav>
+</div>
+{% endblock %}
+<!-- List group-->
+<div class="container py-5">
 
-    <div class="accordian">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <ul class="list-group shadow">
+                {% for zap in zapytanie %}
+                <!-- list group item-->
+                <li class="list-group-item">
+                    <!-- Custom content-->
+                    <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                        <div class="media-body order-2 order-lg-1">
+                            <h4 class="mt-0 font-weight-bold mb-2">{{zap.title}}</h4>
+                            <p class="font-italic text-muted mb-0 small">{{zap.description}}</p>
+                            <div class="d-flex align-items-center justify-content-between mt-1">
+                                <h6 class="font-weight-bold my-2">{{zap.ticketPrice}}</h6>
+                                <h6 class="font-weight-bold my-2">{{zap.ticketAvailability}}</h6>
 
-        <ul>
-            {% for zap in zapytanie %}
-            <li><a class="image_title" href={{zap.description}}></a><a href="danyFilm/{{zap.id}}">{{zap.title}}<img src={{zap.image.url}}></a></li>
-            {% endfor %}
-        </ul>
-
+                            </div>
+                        </div>
+                        <img src={{zap.image.url}}
+                             alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
+                    </div>
+                    <!-- End -->
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
-
-
-    <!-- {% for zap in zapytanie %}
-    <p> <a href = "danyFilm/{{zap.id}}">{{zap.title}} </a></p>
-    {% endfor %} -->
+</div>
     <script src="{% static 'assets/js/jquery.min.js' %}"></script>
     <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
 </body>

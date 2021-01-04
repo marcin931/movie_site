@@ -1,6 +1,9 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
-from rest_framework.urlpatterns import format_suffix_patterns
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'movie', views.movieViewSet)
 
 app_name = 'strona'
 urlpatterns = [
@@ -9,8 +12,8 @@ urlpatterns = [
     path('signup/', views.signup_view, name = 'signup'),
     path('login/', views.login_view, name = 'login'),
     path('logout/', views.logout_view, name = 'logout'),
-    path('strona/', views.movieList.as_view()),
-    path('strona/<int:pk>/', views.movieDetail.as_view()),
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace = 'rest_framework'))
 
 ]
-urlpatterns = format_suffix_patterns(urlpatterns)
+

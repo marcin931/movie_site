@@ -1,9 +1,9 @@
-
+{% extends 'strona/home.html' %}
 {% load static %}
 
 {% block content %}
     <h1>Sign Up</h1>
-    <form action="/strona/signup/" method="post">
+    <form action="{% url 'strona:signup' %}"  method="post">
         {% csrf_token %}
         {{form.as_p}}
         <div class="form-group">
