@@ -32,7 +32,14 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+
+    # My apps
     'strona',
+    'account',
+    'djmoney',
+
+
+    # django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,8 +47,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'djmoney'
+
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -73,6 +82,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'pythonProject.wsgi.application'
 
+AUTH_USER_MODEL = 'account.User'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -123,8 +133,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-
+LOGIN_REDIRECT_URL = 'strona-home'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),

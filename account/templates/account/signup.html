@@ -3,15 +3,17 @@
 
 {% block content %}
     <h1>Sign Up</h1>
-    <form action="{% url 'strona:signup' %}"  method="post">
+    <form method="post">
         {% csrf_token %}
         {{form.as_p}}
+
+
         <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Sign Up</button>
+            <button class="btn btn-outline-info" type="submit">Zarejestruj się</button>
         </div>
     <div class="border-top pt-3">
         <small class="text-muted">
-            Already Have An Account? <a class="ml-2" href="{% url 'strona:login' %}" method="post" type= "submit">Log In</a>
+            Already Have An Account? <a class="ml-2" href="{% url 'account:login' %}" method="post" type= "submit">Log In</a>
         </small>
     </div>
     </form>

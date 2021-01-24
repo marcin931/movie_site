@@ -1,0 +1,44 @@
+{% extends 'strona/home.html' %}
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+</head>
+<body>
+{% block content %}
+
+<h1>Log In</h1>
+<form action="{% url 'account:login' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p}}
+    {% for field in login_form %}
+        <p>
+            {{field.label_tag }}
+            {{field}}
+
+            {% if field.help_text %}
+                <small style="color:grey;">{{ field.help_text }}</small>
+            {% endif %}
+
+            {% for error in field.errors %}
+                <p style="color: red;">{{error}}</p>
+            {% endfor %}
+
+            {% if login_form.non_field_errors %}
+                <div style="color:red;">
+                    <p>{{login_form.non_field_errors}}</p>
+                </div>
+            {% endif %}
+        </p>
+    {% endfor %}
+    <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">Zaloguj</button>
+    </div>
+</form>
+{% endblock content %}
+
+</body>
+</html>
+

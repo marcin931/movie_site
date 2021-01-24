@@ -15,34 +15,45 @@
     <link rel="stylesheet" href="{% static '/assets/css/Animated-Pretty-Product-List.css' %}">
     <link rel="stylesheet" href="{% static '/assets/css/Bootstrap-4---Product-List.css' %}">
     <link rel="stylesheet" href="{% static '/assets/css/styles.css' %}">
+
+
+    {% if user.is_authenticated %}
+        <p><a href="{% url 'account:logout' %}">Wyloguj się</a></p>
+
+
+    {% endif %}
+
+
 </head>
 
 
 
 {% block content %}
 <body style="background-image: url('static/assets/img/kinoplenka-popkorn-fon.jpg');">
-<nav class="mb-3">
-    {% if user.is_authenticated %}
-        <form action="{% url 'strona:logout' %}" method="post">
-            {% csrf_token %}
-            <button class="btn btn-primary btn-sm" type="submit">Log Out</button>
-        </form>
-    {% endif %}
-</nav>
+
 <div>
+
     <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button"
          style="height: 80px;background-color: rgba(50,81,99,0);color: #ffffff;">
         <div class="container-fluid"><a class="navbar-brand" href="{%  url 'strona:strona-home' %}"><i class="fa fa-globe"></i>&nbsp;MoviesAddict</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-item nav-link" style="color:#ffffff;" href="{%url 'strona:login' %}">Logowanie</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-item nav-link" style="color:#ffffff;" href="{%url 'strona:signup' %}"><i class="fa fa-sign-in"></i>&nbsp;Rejestracja</a></li>
+
+
+                    <li class="nav-item" role="presentation"><a class="nav-item nav-link" style="color:#ffffff;" href="{%url 'account:login' %}">Zaloguj się</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-item nav-link" style="color:#ffffff;" href="{%url 'account:signup' %}"><i class="fa fa-sign-in"></i>&nbsp;Zarejestruj się</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-item nav-link" style="color:#ffffff;" href="#">Koszyk</a></li>
+
+
+
+
                 </ul>
             </div>
         </div>
     </nav>
+
 </div>
+
 {% endblock %}
 <!-- List group-->
 <div class="container py-5">
