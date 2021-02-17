@@ -39,8 +39,7 @@ class LoginView(FormView):
 
         else:
 
-            messages.add_message(self.request, messages.INFO, 'nieprawidłowe dane, spróbuj ponownie')
-
+            messages.add_message(self.request, messages.INFO,'nieprawidłowe dane, spróbuj ponownie')
             return HttpResponseRedirect(reverse_lazy('account:login'))
 
 

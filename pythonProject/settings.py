@@ -26,7 +26,7 @@ SECRET_KEY = 'wxqw-bx@@ervj!u5%g+=i%dr7tg!55ffmp)j12=fv=zx1uf!=!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'strona',
     'account',
     'djmoney',
-
 
     # django apps
     'django.contrib.admin',
@@ -75,6 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
             ],
         },
     },
@@ -133,7 +133,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-LOGIN_REDIRECT_URL = 'strona-home'
+LOGIN_REDIRECT_URL = 'strona:strona-home'
+LOGIN_URL = 'account:login'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 

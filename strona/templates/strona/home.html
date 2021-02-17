@@ -2,10 +2,14 @@
 <html lang="en">
 {% load static %}
 
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>MoviesAddict</title>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/main.css' %}">
     <link rel="stylesheet" href="{% static '/assets/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static '/assets/fonts/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static '/assets/css/Dark-NavBar.css' %}">
@@ -18,21 +22,18 @@
 
 
     {% if user.is_authenticated %}
-        <p><a href="{% url 'account:logout' %}">Wyloguj się</a></p>
-
-
+        <a class="btn btn-outline-secondary add-btn" style="color:#ffffff;" href="{% url 'account:logout' %}">Wyloguj się</a>
     {% endif %}
 
 
 </head>
 
-
-
 {% block content %}
+
+
 <body style="background-image: url('static/assets/img/kinoplenka-popkorn-fon.jpg');">
 
 <div>
-
     <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button"
          style="height: 80px;background-color: rgba(50,81,99,0);color: #ffffff;">
         <div class="container-fluid"><a class="navbar-brand" href="{%  url 'strona:strona-home' %}"><i class="fa fa-globe"></i>&nbsp;MoviesAddict</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -42,7 +43,10 @@
 
                     <li class="nav-item" role="presentation"><a class="nav-item nav-link" style="color:#ffffff;" href="{%url 'account:login' %}">Zaloguj się</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-item nav-link" style="color:#ffffff;" href="{%url 'account:signup' %}"><i class="fa fa-sign-in"></i>&nbsp;Zarejestruj się</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-item nav-link" style="color:#ffffff;" href="#">Koszyk</a></li>
+                    <li class=="nav-item" role="presentation" ><a class="nav-item nav-link" style="color:#ffffff;" href="{% url 'strona:cart' %}"><img id="cart-icon" src="{% static 'assets/img/cart.png' %}"><i class="cart-total">0</i>
+                         </a>
+
+                    </li>
 
 
 
@@ -54,28 +58,41 @@
 
 </div>
 
-{% endblock %}
+
 <!-- List group-->
 <div class="container py-5">
 
     <div class="row">
         <div class="col-lg-8 mx-auto">
             <ul class="list-group shadow">
-                {% for zap in zapytanie %}
+                {% for product in products %}
                 <!-- list group item-->
                 <li class="list-group-item">
                     <!-- Custom content-->
                     <div class="media align-items-lg-center flex-column flex-lg-row p-3">
                         <div class="media-body order-2 order-lg-1">
-                            <h4 class="mt-0 font-weight-bold mb-2">{{zap.title}}</h4>
-                            <p class="font-italic text-muted mb-0 small">{{zap.description}}</p>
+                            <h4 class="mt-0 font-weight-bold mb-2">{{product.title}}</h4>
+                            <p class="font-italic text-muted mb-0 small">{{product.description}}</p>
                             <div class="d-flex align-items-center justify-content-between mt-1">
-                                <h6 class="font-weight-bold my-2">{{zap.ticketPrice}}</h6>
-                                <h6 class="font-weight-bold my-2">{{zap.ticketAvailability}}</h6>
+                                <h6 class="font-weight-bold my-2">{{product.ticketPrice}} </h6>
+                                 <h6 class="font-weight-bold my-2">{{product.ticketQuantity}} </h6>
+
+                                 <button class = "btn btn-outline-secondary add-btn">Dodaj bilet do koszyka</button>
+
+                                <h6 class="font-weight-bold my-2">{{product.ticketAvailability}}</h6>
+
+
+
+
 
                             </div>
+                            <p><br/>
+                                <h6 class="font-weight-bold my-2">{{product.rate}} </h6>
+
+                                </p>
                         </div>
-                        <img src={{zap.image.url}}
+
+                        <img src={{product.image.url}}
                              alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
                     </div>
                     <!-- End -->
@@ -87,5 +104,6 @@
 </div>
     <script src="{% static 'assets/js/jquery.min.js' %}"></script>
     <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+{% endblock content %}
 </body>
 </html>
