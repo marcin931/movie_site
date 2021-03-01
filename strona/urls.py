@@ -14,6 +14,7 @@ urlpatterns = [
     path('', views.home_view, name = 'strona-home'),
     path('cart/', views.cart, name = 'cart'),
     path('checkout/', views.checkout, name = 'checkout'),
+    path('update_item/', views.updateItem, name = 'update_item'),
     path('danyFilm/<id>', views.danyFilm, name = 'danyFilm'),
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace = 'rest_framework')),

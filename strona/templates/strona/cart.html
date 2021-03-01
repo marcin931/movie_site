@@ -3,27 +3,8 @@
 {% extends 'strona/home.html' %}
 {% load static %}
 {% block content %}
-<div class="row">
-		<div class="col-lg-12">
-			<div class="box-element">
+<div>
 
-				<a class="btn btn-outline-dark" href="{% url 'strona:strona-home' %}">&#x2190;Kontynuuj zakupy</a>
-
-				<br>
-				<br>
-				<table class="table">
-					<tr>
-						<th><h5>Items: <strong>{{order.get_cart_items}}</strong></h5></th>
-						<th><h5>Total:<strong> ${{order.get_cart_total|floatformat:2}}</strong></h5></th>
-						<th>
-							<a style="float:right; margin:5px; font-color:blue;" class="btn btn-success" href="{% url 'strona:checkout' %}">Checkout</a>
-						</th>
-					</tr>
-				</table>
-
-			</div>
-
-			<br>
 			<div class="box-element">
 				<div class="cart-row">
 					<div style="flex:2"></div>
@@ -45,10 +26,18 @@
 							<img class="chg-quantity" src="{% static  'assets/img/arrow-down.png' %}">
 						</div>
 					</div>
-					<div style="flex:1"><p>$40</p></div>
+					<div style="flex:1"><p>{{item.get_total}}</p></div>
 				</div>
 				{% endfor %}
 			</div>
-		</div>
-	</div>
+			<div class="col-lg-12">
+						<h5>Items:  <strong>{{order.get_cart_items}}</strong></h5>
+						<h5>Total:  <strong>{{order.get_cart_total}}</strong></h5>
+
+							<a class="btn btn-outline-dark" style="float:right; margin-left:5px;" href="{% url 'strona:strona-home' %}">&#x2190;Kontynuuj zakupy</a>
+							<a class="btn btn-outline-dark" style="float:right;" href="{% url 'strona:checkout' %}">Podsumowanie koszyka</a>
+
+			</div>
+
+</div>
 {% endblock content %}
